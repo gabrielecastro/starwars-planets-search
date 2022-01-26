@@ -5,14 +5,13 @@ import getStarWars from '../services/starWarsAPI';
 function Table() {
   const { data, setData } = useContext(AppContext);
 
-  async function returnDataAPI() {
-    const returnAPI = await getStarWars();
-    setData(returnAPI);
-  }
-
   useEffect(() => {
+    async function returnDataAPI() {
+      const returnAPI = await getStarWars();
+      setData(returnAPI);
+    }
     returnDataAPI();
-  });
+  }, [setData]);
 
   return (
     <div>
