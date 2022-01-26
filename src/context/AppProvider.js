@@ -4,10 +4,16 @@ import AppContext from './AppContext';
 
 function AppProvider({ children }) {
   const [data, setData] = useState([]);
+  const [name, setName] = useState();
+  const [planets, setPlanets] = useState([]);
 
   const contextValue = {
     data,
     setData,
+    name,
+    setName,
+    planets,
+    setPlanets,
   };
 
   return (

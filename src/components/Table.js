@@ -1,20 +1,24 @@
 import React, { useEffect, useContext } from 'react';
 import AppContext from '../context/AppContext';
 import getStarWars from '../services/starWarsAPI';
+import FilterName from './FilterName';
 
 function Table() {
-  const { data, setData } = useContext(AppContext);
+  const { setData } = useContext(AppContext);
+  const { planets, setPlanets } = useContext(AppContext);
 
   useEffect(() => {
     async function returnDataAPI() {
       const returnAPI = await getStarWars();
       setData(returnAPI);
+      setPlanets(returnAPI);
     }
     returnDataAPI();
-  }, [setData]);
+  }, [setData, setPlanets]);
 
   return (
     <div>
+      <FilterName />
       <table>
         <thead>
           <tr>
@@ -35,7 +39,7 @@ function Table() {
         </thead>
 
         <tbody>
-          {data.map((planet) => (
+          {planets.map((planet) => (
             <tr key={ planet.name }>
               <td>{ planet.name }</td>
               <td>{ planet.rotation_period }</td>
