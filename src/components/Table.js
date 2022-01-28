@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import AppContext from '../context/AppContext';
 import getStarWars from '../services/starWarsAPI';
 import FilterName from './FilterName';
+import FilterNumbers from './FilterNumbers';
 
 function Table() {
   const { setData } = useContext(AppContext);
@@ -19,6 +20,7 @@ function Table() {
   return (
     <div>
       <FilterName />
+      <FilterNumbers />
       <table>
         <thead>
           <tr>
