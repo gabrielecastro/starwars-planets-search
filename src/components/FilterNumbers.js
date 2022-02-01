@@ -22,6 +22,14 @@ function FilterNumbers() {
   });
 
   useEffect(() => {
+    setColumnOptions([
+      'population',
+      'orbital_period',
+      'diameter',
+      'rotation_period',
+      'surface_water',
+    ]);
+
     filtersGlobal.map(({ column }) => (
       setColumnOptions(columnOptions.filter((opt) => (
         opt !== column
