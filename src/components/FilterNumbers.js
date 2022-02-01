@@ -1,11 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import AppContext from '../context/AppContext';
 
 function FilterNumbers() {
-  const { column, setColumn } = useContext(AppContext);
-  const { comparison, setComparison } = useContext(AppContext);
-  const { value, setValue } = useContext(AppContext);
   const { planets, setPlanets } = useContext(AppContext);
+  const { filtersGlobal, setFiltersGlobal } = useContext(AppContext);
+
+  const [filtersLocal, setFiltersLocal] = useState({
+    column: 'population',
+    comparison: 'maior que',
+    value: '0',
+  });
 
   const columnOptions = [
     'population',
@@ -15,25 +19,40 @@ function FilterNumbers() {
     'surface_water',
   ];
 
+  /*   useEffect(() => {
+    console.log(filtersLocal.column);
+  }, [filtersLocal]); */
+
   function filterNumberTable() {
+    setFiltersGlobal([...filtersGlobal, filtersLocal]);
+
     const filterPlanetsValue = planets.filter((item) => {
-      if (comparison === 'maior que') {
-        return Number(item[column]) > Number(value);
-      } if (comparison === 'menor que') {
-        return Number(item[column]) < Number(value);
+      if (filtersLocal.comparison === 'maior que') {
+        return Number(item[filtersLocal.column]) > Number(filtersLocal.value);
+      } if (filtersLocal.comparison === 'menor que') {
+        return Number(item[filtersLocal.column]) < Number(filtersLocal.value);
       }
-      return Number(item[column]) === Number(value);
+      return Number(item[filtersLocal.column]) === Number(filtersLocal.value);
     });
+
     setPlanets(filterPlanetsValue);
+
+    setFiltersLocal({
+      column: 'population',
+      comparison: 'maior que',
+      value: '0',
+    });
   }
 
   return (
     <div>
       <select
         data-testid="column-filter"
-        value={ column }
+        value={ filtersLocal.column }
         name="column"
-        onChange={ (e) => setColumn(e.target.value) }
+        onChange={ (e) => setFiltersLocal({
+          ...filtersLocal, column: e.target.value,
+        }) }
       >
         {columnOptions.map((option) => (
           <option key={ option } value={ option }>{option}</option>
@@ -42,9 +61,11 @@ function FilterNumbers() {
 
       <select
         data-testid="comparison-filter"
-        value={ comparison }
+        value={ filtersLocal.comparison }
         name="comparison"
-        onChange={ (e) => setComparison(e.target.value) }
+        onChange={ (e) => setFiltersLocal({
+          ...filtersLocal, comparison: e.target.value,
+        }) }
       >
         <option>maior que</option>
         <option>menor que</option>
@@ -54,9 +75,11 @@ function FilterNumbers() {
       <input
         type="number"
         data-testid="value-filter"
-        value={ value }
+        value={ filtersLocal.value }
         name="value"
-        onChange={ (e) => setValue(e.target.value) }
+        onChange={ (e) => setFiltersLocal({
+          ...filtersLocal, value: e.target.value,
+        }) }
       />
 
       <button

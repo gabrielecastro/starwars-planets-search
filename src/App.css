@@ -39,3 +39,7 @@
     transform: rotate(360deg);
   }
 }
+
+.container-span-filter {
+  display: none;
+}

@@ -3,6 +3,7 @@ import AppContext from '../context/AppContext';
 import getStarWars from '../services/starWarsAPI';
 import FilterName from './FilterName';
 import FilterNumbers from './FilterNumbers';
+import SpanValues from './SpanValues';
 
 function Table() {
   const { setData } = useContext(AppContext);
@@ -21,6 +22,7 @@ function Table() {
     <div>
       <FilterName />
       <FilterNumbers />
+      <SpanValues />
       <table>
         <thead>
           <tr>

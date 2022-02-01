@@ -6,10 +6,8 @@ function AppProvider({ children }) {
   const [data, setData] = useState([]);
   const [name, setName] = useState();
   const [planets, setPlanets] = useState([]);
-  const [column, setColumn] = useState('population');
-  const [comparison, setComparison] = useState('maior que');
-  const [value, setValue] = useState('0');
   const [filterByNumericValues, setFilterByNumericValues] = useState({});
+  const [filtersGlobal, setFiltersGlobal] = useState([]);
 
   const contextValue = {
     data,
@@ -18,12 +16,8 @@ function AppProvider({ children }) {
     setName,
     planets,
     setPlanets,
-    column,
-    setColumn,
-    comparison,
-    setComparison,
-    value,
-    setValue,
+    filtersGlobal,
+    setFiltersGlobal,
     filterByNumericValues,
     setFilterByNumericValues,
   };
