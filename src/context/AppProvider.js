@@ -6,7 +6,6 @@ function AppProvider({ children }) {
   const [data, setData] = useState([]);
   const [name, setName] = useState();
   const [planets, setPlanets] = useState([]);
-  const [filterByNumericValues, setFilterByNumericValues] = useState({});
   const [filtersGlobal, setFiltersGlobal] = useState([]);
 
   const contextValue = {
@@ -18,8 +17,6 @@ function AppProvider({ children }) {
     setPlanets,
     filtersGlobal,
     setFiltersGlobal,
-    filterByNumericValues,
-    setFilterByNumericValues,
   };
 
   return (

@@ -1,9 +1,19 @@
-import React, { useContext, useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useContext, useEffect, useState } from 'react';
 import AppContext from '../context/AppContext';
+import ButtonDelete from './ButtonDelete';
 
 function FilterNumbers() {
   const { planets, setPlanets } = useContext(AppContext);
   const { filtersGlobal, setFiltersGlobal } = useContext(AppContext);
+
+  const [columnOptions, setColumnOptions] = useState([
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
+  ]);
 
   const [filtersLocal, setFiltersLocal] = useState({
     column: 'population',
@@ -11,17 +21,13 @@ function FilterNumbers() {
     value: '0',
   });
 
-  const columnOptions = [
-    'population',
-    'orbital_period',
-    'diameter',
-    'rotation_period',
-    'surface_water',
-  ];
-
-  /*   useEffect(() => {
-    console.log(filtersLocal.column);
-  }, [filtersLocal]); */
+  useEffect(() => {
+    filtersGlobal.map(({ column }) => (
+      setColumnOptions(columnOptions.filter((opt) => (
+        opt !== column
+      )))
+    ));
+  }, [filtersGlobal]);
 
   function filterNumberTable() {
     setFiltersGlobal([...filtersGlobal, filtersLocal]);
@@ -89,6 +95,9 @@ function FilterNumbers() {
       >
         Filtrar
       </button>
+
+      <ButtonDelete />
+
     </div>
   );
 }
