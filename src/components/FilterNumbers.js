@@ -60,52 +60,60 @@ function FilterNumbers() {
 
   return (
     <div>
-      <select
-        data-testid="column-filter"
-        value={ filtersLocal.column }
-        name="column"
-        onChange={ (e) => setFiltersLocal({
-          ...filtersLocal, column: e.target.value,
-        }) }
-      >
-        {columnOptions.map((option) => (
-          <option key={ option } value={ option }>{option}</option>
-        ))}
-      </select>
+      <div className=" bg-black flex justify-evenly p-5 block">
+        <select
+          className="bg-white w-72 text-black h-8 border-slate-300 text-center rounded-md"
+          data-testid="column-filter"
+          value={ filtersLocal.column }
+          name="column"
+          onChange={ (e) => setFiltersLocal({
+            ...filtersLocal, column: e.target.value,
+          }) }
+        >
+          {columnOptions.map((option) => (
+            <option key={ option } value={ option }>{option}</option>
+          ))}
+        </select>
 
-      <select
-        data-testid="comparison-filter"
-        value={ filtersLocal.comparison }
-        name="comparison"
-        onChange={ (e) => setFiltersLocal({
-          ...filtersLocal, comparison: e.target.value,
-        }) }
-      >
-        <option>maior que</option>
-        <option>menor que</option>
-        <option>igual a</option>
-      </select>
+        <select
+          className="bg-white w-72 text-black h-8 border-slate-300 text-center rounded-md"
+          data-testid="comparison-filter"
+          value={ filtersLocal.comparison }
+          name="comparison"
+          onChange={ (e) => setFiltersLocal({
+            ...filtersLocal, comparison: e.target.value,
+          }) }
+        >
+          <option>maior que</option>
+          <option>menor que</option>
+          <option>igual a</option>
+        </select>
 
-      <input
-        type="number"
-        data-testid="value-filter"
-        value={ filtersLocal.value }
-        name="value"
-        onChange={ (e) => setFiltersLocal({
-          ...filtersLocal, value: e.target.value,
-        }) }
-      />
+        <input
+          className="bg-slate-200 w-72 text-black h-8
+            border-slate-300 text-center rounded-md"
+          type="number"
+          data-testid="value-filter"
+          value={ filtersLocal.value }
+          name="value"
+          onChange={ (e) => setFiltersLocal({
+            ...filtersLocal, value: e.target.value,
+          }) }
+        />
 
-      <button
-        type="button"
-        data-testid="button-filter"
-        onClick={ filterNumberTable }
-      >
-        Filtrar
-      </button>
+        <button
+          className="w-24 h-8 bg-yellow-400 rounded-md text-black font-medium"
+          type="button"
+          data-testid="button-filter"
+          onClick={ filterNumberTable }
+        >
+          Filtrar
+        </button>
 
-      <ButtonDelete />
-
+      </div>
+      <div className="block pl-20 pb-5">
+        <ButtonDelete />
+      </div>
     </div>
   );
 }

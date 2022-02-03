@@ -17,10 +17,13 @@ function FilterName() {
   }
 
   return (
-    <div>
+    <div className="bg-black text-gray-300 flex justify-center pb-5 pt-20">
       <input
+        className="bg-slate-200 w-72 text-black h-8
+          border-slate-300 text-center rounded-md"
         type="text"
         data-testid="name-filter"
+        placeholder="Nome"
         onChange={ handleChange }
         value={ name }
       />

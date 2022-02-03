@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import lixeira from '../images/excluir.png';
 import AppContext from '../context/AppContext';
 
 function ButtonDelete() {
@@ -7,10 +8,10 @@ function ButtonDelete() {
   return (
     <div>
       {filtersGlobal.map((item, index) => (
-        <div key={ index }>
-          <span>{item.column}</span>
-          <span>{item.comparison}</span>
-          <span>{item.value}</span>
+        <div className="block flex pb-3" key={ index }>
+          <span className="pr-2">{item.column}</span>
+          <span className="pr-2">{item.comparison}</span>
+          <span className="pr-2">{item.value}</span>
 
           <button
             data-testid="filter"
@@ -21,7 +22,11 @@ function ButtonDelete() {
               setFiltersGlobal(cloneArray);
             } }
           >
-            X
+            <img
+              className="white h-6"
+              src={ lixeira }
+              alt="button-delete"
+            />
           </button>
         </div>
       ))}
